@@ -5,10 +5,13 @@
  *  Author: norda
  */ 
 
-
+  #include <asf.h>
 #ifndef BATMON_H_
 #define BATMON_H_
-
+void batMonInit( uint16_t voltHiglim, uint16_t voltLowLim );
+void batMonReadVoltage( uint16_t *voltage );
+void batMonSetLimts( uint16_t high, uint16_t low );
+uint8_t batMonExecute();
 
 
 

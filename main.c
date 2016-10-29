@@ -11,6 +11,8 @@
 #include "threads/diag.h"
 #include "threads/situationAwareness.h"
 #include "threads/motorControl.h"
+#include "common/batMon.h"
+
 int main (void)
 {
 	sysclk_init();
