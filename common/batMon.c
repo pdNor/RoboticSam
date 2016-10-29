@@ -49,7 +49,3 @@ uint8_t batMonExecute()
 	return res;
 }
 
-void batMonTakeAction()
-{
-	volatile int i = 1;
-}

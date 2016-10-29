@@ -12,7 +12,6 @@ void batMonInit( uint16_t voltHiglim, uint16_t voltLowLim );
 void batMonReadVoltage( uint16_t *voltage );
 void batMonSetLimts( uint16_t high, uint16_t low );
 uint8_t batMonExecute( void );
-void batMonTakeAction( void );
 
 
 

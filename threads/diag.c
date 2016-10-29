@@ -7,7 +7,7 @@
  #include <FreeRTOS.h>
  #include <asf.h>
  #include "diag.h"
- #include "common/batMon.h"
+ #include "common/batMonMgr.h"
  #include "common/errorCodes.h"
 
  void diagInit()
@@ -22,11 +22,7 @@
 
 	for (;;)
 	{
-		batStatus = batMonExecute();
-		if ( batStatus != ERROR_OK )
-		{
-			batMonTakeAction();
-		}
+		batMonMgrCheckVoltage();
 		vTaskDelay( xDelay ); 
 	}
 	vTaskDelete( NULL );
