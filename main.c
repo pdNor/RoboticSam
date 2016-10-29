@@ -12,11 +12,13 @@
 #include "threads/situationAwareness.h"
 #include "threads/motorControl.h"
 #include "common/batMon.h"
+#include "base/adc.h"
 
 int main (void)
 {
 	sysclk_init();
 	board_init();
+	init_adc();
 	xTaskCreate(diagMain, (const signed char * const)"Diag", TASK_STACKSIZE, NULL, 3, NULL);
 	xTaskCreate(motorControlMain, (const signed char * const)"Motor", TASK_STACKSIZE, NULL, 2, NULL);
 	xTaskCreate(situationAwarenessMain, (const signed char * const)"Sit", TASK_STACKSIZE, NULL, 1, NULL);

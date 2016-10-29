@@ -6,16 +6,15 @@
 #include "errorCodes.h"
 #include <asf.h>
 
+#define HIGH_LIM	2400
+#define LOW_LIM		800
 #define R1			1500
 #define R2			10000
 #define ADSTEP		(3.3/4096)
 
-static uint16_t highVolt;
-static uint16_t lowVolt;
 
 void batMonInit( uint16_t voltHiglim, uint16_t voltLowLim )
 {
-	batMonSetLimts( voltHiglim, voltLowLim );
 }
 
 void batMonReadVoltage( uint16_t *voltage )
@@ -24,7 +23,9 @@ void batMonReadVoltage( uint16_t *voltage )
 }
 
 void batMonSetLimts( uint16_t high, uint16_t low )
-{
+{	
+	int highVolt;
+	int lowVolt;
 	highVolt = ( ((R2) / (R1 + R2 ) * high) / ADSTEP );
 	lowVolt = ( ((R2) / (R1 + R2 ) * low) / ADSTEP );
 }
@@ -36,14 +37,19 @@ uint8_t batMonExecute()
 
 	batMonReadVoltage( &voltage );
 
-	if ( voltage < lowVolt )
+	if ( voltage < LOW_LIM )
 	{
 		res = ERROR_LOW_VOLTAGE;
 	}
-	else if ( voltage > lowVolt )
+	else if ( voltage > HIGH_LIM )
 	{
 		res = ERROR_HIGH_VOLTAGE;
 	}
 
 	return res;
+}
+
+void batMonTakeAction()
+{
+	volatile int i = 1;
 }
