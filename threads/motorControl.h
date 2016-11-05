@@ -11,6 +11,4 @@
 void motorControlInit( void );
 void motorControlMain( void *pvParameters );
 
-
-
 #endif /* MOTORCONTROL_H_ */

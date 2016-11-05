@@ -7,6 +7,7 @@
  #include <FreeRTOS.h>
  #include <asf.h>
  #include "threads/motorControl.h"
+ #include "common/motorHandle.h"
 
  void motorControlInit()
  {
@@ -18,12 +19,7 @@
 	const portTickType xDelay = 50 / portTICK_RATE_MS;
 	for (;;)
 	{
-		volatile int i = 0;
-		for( volatile int j = 0; j < 10; j++)
-		{
-			j = (j+i);
-			++i;
-		}
+		motorHandleExecute();
 		vTaskDelay( xDelay ); 
 	}
 	vTaskDelete( NULL );
